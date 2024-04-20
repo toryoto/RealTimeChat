@@ -1145,3 +1145,63 @@ Processing by MessagesController#index as */*
 Completed 200 OK in 57ms (Views: 1.7ms | ActiveRecord: 2.5ms | Allocations: 13573)
 
 
+Started GET "/messages" for ::1 at 2024-04-20 20:51:34 +0900
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by MessagesController#index as */*
+  Parameters: {"name"=>"Test", "email"=>"test1@test.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 21ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 6525)
+
+
+Started POST "/auth/sign_in" for ::1 at 2024-04-20 21:02:28 +0900
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by DeviseTokenAuth::SessionsController#create as */*
+  Parameters: {"email"=>"test1@test.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? AND "users"."provider" = ? LIMIT ?[0m  [["email", "test1@test.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ? [0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Update (2.6ms)[0m  [1m[33mUPDATE "users" SET "tokens" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["tokens", "{\"DjQAV6xfi77agLkWHrMtgQ\":{\"token\":\"$2a$10$hI0eyRtiExHKW9CVJvrRLOsJtKGsE173LEaxNx/PeM3FcricJcUfe\",\"expiry\":1714724468,\"previous_token\":\"$2a$10$BGu9f3EZ0ikL3M044lZEDeKchz7Q3QjCGdM8EErGkixZ/8GuoKTM6\",\"updated_at\":\"2024-04-19T08:21:08Z\"},\"ZoeqBlXY4fiabFmOYs_efg\":{\"token\":\"$2a$10$bsLoTVitEfiHa9HJdnB0HuNAa7sVU9rotbPJazMq4EdhPuiURXBV2\",\"expiry\":1714824149}}"], ["updated_at", "2024-04-20 12:02:29.444450"], ["id", 1]]
+  [1m[35m (10.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ? [0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "tokens" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["tokens", "{\"DjQAV6xfi77agLkWHrMtgQ\":{\"token\":\"$2a$10$hI0eyRtiExHKW9CVJvrRLOsJtKGsE173LEaxNx/PeM3FcricJcUfe\",\"expiry\":1714724468,\"previous_token\":\"$2a$10$BGu9f3EZ0ikL3M044lZEDeKchz7Q3QjCGdM8EErGkixZ/8GuoKTM6\",\"updated_at\":\"2024-04-19T08:21:08Z\"},\"ZoeqBlXY4fiabFmOYs_efg\":{\"token\":\"$2a$10$t0ANT26faTTihZPRZDt2yOADTMjrjY8piHusbzcoE2giSS8UjZQCq\",\"expiry\":1714824149,\"previous_token\":\"$2a$10$bsLoTVitEfiHa9HJdnB0HuNAa7sVU9rotbPJazMq4EdhPuiURXBV2\",\"updated_at\":\"2024-04-20T12:02:29Z\"}}"], ["updated_at", "2024-04-20 12:02:29.613147"], ["id", 1]]
+  [1m[35m (16.4ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 891ms (Views: 2.6ms | ActiveRecord: 32.4ms | Allocations: 25107)
+
+
+Started GET "/messages?access_token=HVRs9a2HyD8V5-O9EdIQUg&client=ZoeqBlXY4fiabFmOYs_efg&uid=test1@test.com" for ::1 at 2024-04-20 21:04:23 +0900
+Processing by MessagesController#index as */*
+  Parameters: {"name"=>"Test", "email"=>"test1@test.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "access_token"=>"HVRs9a2HyD8V5-O9EdIQUg", "client"=>"ZoeqBlXY4fiabFmOYs_efg", "uid"=>"test1@test.com"}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 166)
+
+
+Started GET "/messages?access_token=HVRs9a2HyD8V5-O9EdIQUg&client=ZoeqBlXY4fiabFmOYs_efg&uid=test1@test.com" for ::1 at 2024-04-20 21:05:05 +0900
+Processing by MessagesController#index as */*
+  Parameters: {"name"=>"Test", "email"=>"test1@test.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "access_token"=>"HVRs9a2HyD8V5-O9EdIQUg", "client"=>"ZoeqBlXY4fiabFmOYs_efg", "uid"=>"test1@test.com"}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 167)
+
+
+Started GET "/messages?access-token=HVRs9a2HyD8V5-O9EdIQUg&client=ZoeqBlXY4fiabFmOYs_efg&uid=test1@test.com" for ::1 at 2024-04-20 21:06:04 +0900
+Processing by MessagesController#index as */*
+  Parameters: {"name"=>"Test", "email"=>"test1@test.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "access-token"=>"HVRs9a2HyD8V5-O9EdIQUg", "client"=>"ZoeqBlXY4fiabFmOYs_efg", "uid"=>"test1@test.com"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "test1@test.com"], ["LIMIT", 1]]
+  [1m[36mMessage Load (0.3ms)[0m  [1m[34mSELECT "messages".* FROM "messages"[0m
+  ↳ app/controllers/messages_controller.rb:6:in `map'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/messages_controller.rb:9:in `block in index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/messages_controller.rb:9:in `block in index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/messages_controller.rb:9:in `block in index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ? [0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "tokens" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["tokens", "{\"DjQAV6xfi77agLkWHrMtgQ\":{\"token\":\"$2a$10$hI0eyRtiExHKW9CVJvrRLOsJtKGsE173LEaxNx/PeM3FcricJcUfe\",\"expiry\":1714724468,\"previous_token\":\"$2a$10$BGu9f3EZ0ikL3M044lZEDeKchz7Q3QjCGdM8EErGkixZ/8GuoKTM6\",\"updated_at\":\"2024-04-19T08:21:08Z\"},\"ZoeqBlXY4fiabFmOYs_efg\":{\"token\":\"$2a$10$BCJFiZNupmZOnSJgm.8GD.m2QWvejrGqRUFVYkQ6bGjCBsCL0Fcme\",\"expiry\":1714824364,\"previous_token\":\"$2a$10$t0ANT26faTTihZPRZDt2yOADTMjrjY8piHusbzcoE2giSS8UjZQCq\",\"last_token\":\"$2a$10$bsLoTVitEfiHa9HJdnB0HuNAa7sVU9rotbPJazMq4EdhPuiURXBV2\",\"updated_at\":\"2024-04-20T12:06:04Z\"}}"], ["updated_at", "2024-04-20 12:06:04.342728"], ["id", 1]]
+  [1m[35m (10.7ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 308ms (Views: 0.5ms | ActiveRecord: 14.0ms | Allocations: 19107)
+
+
