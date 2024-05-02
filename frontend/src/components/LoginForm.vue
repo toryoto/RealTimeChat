@@ -18,26 +18,35 @@ export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      error: null,
     }
   },
-  async login() {
-    try {
-      this.error = null
-      const res = await axios.post('http://localhost:3000/auth/sign_in', {
-        email: this.email,
-        password: this.password
-      })
-      if (!res) {
-        throw new Error('メールアドレスかパスワードが違います')
-      } 
-      if (this.error == null) {
-        this.$emit('redirectToChatRoom')
+  methods: {
+    async login() {
+      try {
+        this.error = null
+        const res = await axios.post('http://localhost:3000/auth/sign_in', {
+          email: this.email,
+          password: this.password
+        })
+        if (!res) {
+          throw new Error('メールアドレスかパスワードが違います')
+        } 
+        if (this.error == null) {
+          console.log({ res })
+          // console.log(res.headers['access-token'])
+          window.localStorage.setItem('access-token', res.headers['access-token']) // キーにハイフンが含まれると.でアクセスできない
+          window.localStorage.setItem('client', res.headers.client)
+          window.localStorage.setItem('uid', res.headers.uid)
+          window.localStorage.setItem('name', res.data.data.name)
+          this.$emit('redirectToChatRoom')
+        }
+      } catch(error) {
+        // console.log(error)
+        this.error = 'メールアドレスかパスワードが違います'
       }
-    } catch(error) {
-      // console.log(error)
-      this.error = 'メールアドレスかパスワードが違います'
     }
-  }
+  },
 }
 </script>

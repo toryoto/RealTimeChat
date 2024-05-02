@@ -1503,3 +1503,107 @@ Processing by Auth::RegistrationsController#create as HTML
 Completed 200 OK in 1070ms (Views: 0.8ms | ActiveRecord: 53.8ms | Allocations: 35891)
 
 
+Started POST "/auth/sign_in" for ::1 at 2024-05-03 02:33:28 +0900
+  [1m[35m (4.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"test@test.com", "password"=>"[FILTERED]", "session"=>{"email"=>"test@test.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :session[0m
+[31mUnpermitted parameter: :session[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? AND "users"."provider" = ? LIMIT ?[0m  [["email", "test@test.com"], ["provider", "email"], ["LIMIT", 1]]
+[31mUnpermitted parameter: :session[0m
+[31mUnpermitted parameter: :session[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ? [0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Update (3.2ms)[0m  [1m[33mUPDATE "users" SET "tokens" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["tokens", "{\"2B7ONdP0qLb9pCIkD3s-Bg\":{\"token\":\"$2a$10$VCdVSwGycedKMJJ.Crjueumo9tvqMrq7B8zMkd7gRuZL8VUZWgGx2\",\"expiry\":1715823369,\"previous_token\":\"$2a$10$CYu3rrqrp1Jsn3kpVNKBwOnnj7NRptV/ngiMrMUKUizbBuBJ/sYO.\",\"updated_at\":\"2024-05-02T01:36:09Z\"},\"sl1H3aQvBmezzsKjAloUMw\":{\"token\":\"$2a$10$xr.a81zlshBFrOGMs/kErOuCxgQWzd9Gv9bWYTsSUuWUvBip90NZ2\",\"expiry\":1715880808}}"], ["updated_at", "2024-05-02 17:33:28.575387"], ["id", 3]]
+  [1m[35m (7.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ? [0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "tokens" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["tokens", "{\"2B7ONdP0qLb9pCIkD3s-Bg\":{\"token\":\"$2a$10$VCdVSwGycedKMJJ.Crjueumo9tvqMrq7B8zMkd7gRuZL8VUZWgGx2\",\"expiry\":1715823369,\"previous_token\":\"$2a$10$CYu3rrqrp1Jsn3kpVNKBwOnnj7NRptV/ngiMrMUKUizbBuBJ/sYO.\",\"updated_at\":\"2024-05-02T01:36:09Z\"},\"sl1H3aQvBmezzsKjAloUMw\":{\"token\":\"$2a$10$TtLJU3dZLwOq9jAoBvlus.IRl583dReU10VRWtPhjwXVN8myu3xUG\",\"expiry\":1715880808,\"previous_token\":\"$2a$10$xr.a81zlshBFrOGMs/kErOuCxgQWzd9Gv9bWYTsSUuWUvBip90NZ2\",\"updated_at\":\"2024-05-02T17:33:28Z\"}}"], ["updated_at", "2024-05-02 17:33:28.664933"], ["id", 3]]
+  [1m[35m (9.1ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 404ms (Views: 1.0ms | ActiveRecord: 22.6ms | Allocations: 23991)
+
+
+Started POST "/auth/sign_in" for ::1 at 2024-05-03 02:42:03 +0900
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"test@test.com", "password"=>"[FILTERED]", "session"=>{"email"=>"test@test.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :session[0m
+[31mUnpermitted parameter: :session[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? AND "users"."provider" = ? LIMIT ?[0m  [["email", "test@test.com"], ["provider", "email"], ["LIMIT", 1]]
+[31mUnpermitted parameter: :session[0m
+[31mUnpermitted parameter: :session[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ? [0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "tokens" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["tokens", "{\"2B7ONdP0qLb9pCIkD3s-Bg\":{\"token\":\"$2a$10$VCdVSwGycedKMJJ.Crjueumo9tvqMrq7B8zMkd7gRuZL8VUZWgGx2\",\"expiry\":1715823369,\"previous_token\":\"$2a$10$CYu3rrqrp1Jsn3kpVNKBwOnnj7NRptV/ngiMrMUKUizbBuBJ/sYO.\",\"updated_at\":\"2024-05-02T01:36:09Z\"},\"sl1H3aQvBmezzsKjAloUMw\":{\"token\":\"$2a$10$TtLJU3dZLwOq9jAoBvlus.IRl583dReU10VRWtPhjwXVN8myu3xUG\",\"expiry\":1715880808,\"previous_token\":\"$2a$10$xr.a81zlshBFrOGMs/kErOuCxgQWzd9Gv9bWYTsSUuWUvBip90NZ2\",\"updated_at\":\"2024-05-02T17:33:28Z\"},\"aaWwuBj_vmHNz9YjZaGVIQ\":{\"token\":\"$2a$10$V.m3bWurN0b3pTp6TZQr2OKa8D5URWbPOQneUusMJiDEr5gAQ4ILO\",\"expiry\":1715881323}}"], ["updated_at", "2024-05-02 17:42:03.535636"], ["id", 3]]
+  [1m[35m (9.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ? [0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "tokens" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["tokens", "{\"2B7ONdP0qLb9pCIkD3s-Bg\":{\"token\":\"$2a$10$VCdVSwGycedKMJJ.Crjueumo9tvqMrq7B8zMkd7gRuZL8VUZWgGx2\",\"expiry\":1715823369,\"previous_token\":\"$2a$10$CYu3rrqrp1Jsn3kpVNKBwOnnj7NRptV/ngiMrMUKUizbBuBJ/sYO.\",\"updated_at\":\"2024-05-02T01:36:09Z\"},\"sl1H3aQvBmezzsKjAloUMw\":{\"token\":\"$2a$10$TtLJU3dZLwOq9jAoBvlus.IRl583dReU10VRWtPhjwXVN8myu3xUG\",\"expiry\":1715880808,\"previous_token\":\"$2a$10$xr.a81zlshBFrOGMs/kErOuCxgQWzd9Gv9bWYTsSUuWUvBip90NZ2\",\"updated_at\":\"2024-05-02T17:33:28Z\"},\"aaWwuBj_vmHNz9YjZaGVIQ\":{\"token\":\"$2a$10$ZhGzSu1foWWTR/tjfNqunefWrv8Fai6DtCfU7.kcI6rBsNnvYPLNC\",\"expiry\":1715881323,\"previous_token\":\"$2a$10$V.m3bWurN0b3pTp6TZQr2OKa8D5URWbPOQneUusMJiDEr5gAQ4ILO\",\"updated_at\":\"2024-05-02T17:42:03Z\"}}"], ["updated_at", "2024-05-02 17:42:03.611241"], ["id", 3]]
+  [1m[35m (8.2ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 336ms (Views: 0.5ms | ActiveRecord: 19.8ms | Allocations: 17593)
+
+
+Started POST "/auth/sign_in" for ::1 at 2024-05-03 02:50:40 +0900
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"test@test.com", "password"=>"[FILTERED]", "session"=>{"email"=>"test@test.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :session[0m
+[31mUnpermitted parameter: :session[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? AND "users"."provider" = ? LIMIT ?[0m  [["email", "test@test.com"], ["provider", "email"], ["LIMIT", 1]]
+[31mUnpermitted parameter: :session[0m
+[31mUnpermitted parameter: :session[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ? [0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "tokens" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["tokens", "{\"2B7ONdP0qLb9pCIkD3s-Bg\":{\"token\":\"$2a$10$VCdVSwGycedKMJJ.Crjueumo9tvqMrq7B8zMkd7gRuZL8VUZWgGx2\",\"expiry\":1715823369,\"previous_token\":\"$2a$10$CYu3rrqrp1Jsn3kpVNKBwOnnj7NRptV/ngiMrMUKUizbBuBJ/sYO.\",\"updated_at\":\"2024-05-02T01:36:09Z\"},\"sl1H3aQvBmezzsKjAloUMw\":{\"token\":\"$2a$10$TtLJU3dZLwOq9jAoBvlus.IRl583dReU10VRWtPhjwXVN8myu3xUG\",\"expiry\":1715880808,\"previous_token\":\"$2a$10$xr.a81zlshBFrOGMs/kErOuCxgQWzd9Gv9bWYTsSUuWUvBip90NZ2\",\"updated_at\":\"2024-05-02T17:33:28Z\"},\"aaWwuBj_vmHNz9YjZaGVIQ\":{\"token\":\"$2a$10$ZhGzSu1foWWTR/tjfNqunefWrv8Fai6DtCfU7.kcI6rBsNnvYPLNC\",\"expiry\":1715881323,\"previous_token\":\"$2a$10$V.m3bWurN0b3pTp6TZQr2OKa8D5URWbPOQneUusMJiDEr5gAQ4ILO\",\"updated_at\":\"2024-05-02T17:42:03Z\"},\"vF24fNP-CLvr4QjN-5luxQ\":{\"token\":\"$2a$10$GEVC0qAqVDVYPW7QZnwQuOzOd78R6qA8AsJBIXBTcNd5nKJaU.imC\",\"expiry\":1715881840}}"], ["updated_at", "2024-05-02 17:50:40.623556"], ["id", 3]]
+  [1m[35m (7.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ? [0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "tokens" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["tokens", "{\"2B7ONdP0qLb9pCIkD3s-Bg\":{\"token\":\"$2a$10$VCdVSwGycedKMJJ.Crjueumo9tvqMrq7B8zMkd7gRuZL8VUZWgGx2\",\"expiry\":1715823369,\"previous_token\":\"$2a$10$CYu3rrqrp1Jsn3kpVNKBwOnnj7NRptV/ngiMrMUKUizbBuBJ/sYO.\",\"updated_at\":\"2024-05-02T01:36:09Z\"},\"sl1H3aQvBmezzsKjAloUMw\":{\"token\":\"$2a$10$TtLJU3dZLwOq9jAoBvlus.IRl583dReU10VRWtPhjwXVN8myu3xUG\",\"expiry\":1715880808,\"previous_token\":\"$2a$10$xr.a81zlshBFrOGMs/kErOuCxgQWzd9Gv9bWYTsSUuWUvBip90NZ2\",\"updated_at\":\"2024-05-02T17:33:28Z\"},\"aaWwuBj_vmHNz9YjZaGVIQ\":{\"token\":\"$2a$10$ZhGzSu1foWWTR/tjfNqunefWrv8Fai6DtCfU7.kcI6rBsNnvYPLNC\",\"expiry\":1715881323,\"previous_token\":\"$2a$10$V.m3bWurN0b3pTp6TZQr2OKa8D5URWbPOQneUusMJiDEr5gAQ4ILO\",\"updated_at\":\"2024-05-02T17:42:03Z\"},\"vF24fNP-CLvr4QjN-5luxQ\":{\"token\":\"$2a$10$UCXB8f9/X6PCKa8jD3iYIO4yXZibKicCrhP567QoSh5hMZXOKqeQG\",\"expiry\":1715881840,\"previous_token\":\"$2a$10$GEVC0qAqVDVYPW7QZnwQuOzOd78R6qA8AsJBIXBTcNd5nKJaU.imC\",\"updated_at\":\"2024-05-02T17:50:40Z\"}}"], ["updated_at", "2024-05-02 17:50:40.697576"], ["id", 3]]
+  [1m[35m (8.9ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 340ms (Views: 0.2ms | ActiveRecord: 18.7ms | Allocations: 18069)
+
+
+Started POST "/auth/sign_in" for ::1 at 2024-05-03 02:52:42 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"test@test.com", "password"=>"[FILTERED]", "session"=>{"email"=>"test@test.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :session[0m
+[31mUnpermitted parameter: :session[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? AND "users"."provider" = ? LIMIT ?[0m  [["email", "test@test.com"], ["provider", "email"], ["LIMIT", 1]]
+[31mUnpermitted parameter: :session[0m
+[31mUnpermitted parameter: :session[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ? [0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "tokens" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["tokens", "{\"2B7ONdP0qLb9pCIkD3s-Bg\":{\"token\":\"$2a$10$VCdVSwGycedKMJJ.Crjueumo9tvqMrq7B8zMkd7gRuZL8VUZWgGx2\",\"expiry\":1715823369,\"previous_token\":\"$2a$10$CYu3rrqrp1Jsn3kpVNKBwOnnj7NRptV/ngiMrMUKUizbBuBJ/sYO.\",\"updated_at\":\"2024-05-02T01:36:09Z\"},\"sl1H3aQvBmezzsKjAloUMw\":{\"token\":\"$2a$10$TtLJU3dZLwOq9jAoBvlus.IRl583dReU10VRWtPhjwXVN8myu3xUG\",\"expiry\":1715880808,\"previous_token\":\"$2a$10$xr.a81zlshBFrOGMs/kErOuCxgQWzd9Gv9bWYTsSUuWUvBip90NZ2\",\"updated_at\":\"2024-05-02T17:33:28Z\"},\"aaWwuBj_vmHNz9YjZaGVIQ\":{\"token\":\"$2a$10$ZhGzSu1foWWTR/tjfNqunefWrv8Fai6DtCfU7.kcI6rBsNnvYPLNC\",\"expiry\":1715881323,\"previous_token\":\"$2a$10$V.m3bWurN0b3pTp6TZQr2OKa8D5URWbPOQneUusMJiDEr5gAQ4ILO\",\"updated_at\":\"2024-05-02T17:42:03Z\"},\"vF24fNP-CLvr4QjN-5luxQ\":{\"token\":\"$2a$10$UCXB8f9/X6PCKa8jD3iYIO4yXZibKicCrhP567QoSh5hMZXOKqeQG\",\"expiry\":1715881840,\"previous_token\":\"$2a$10$GEVC0qAqVDVYPW7QZnwQuOzOd78R6qA8AsJBIXBTcNd5nKJaU.imC\",\"updated_at\":\"2024-05-02T17:50:40Z\"},\"pCHGWhaV6hiFv_u1DNWK0Q\":{\"token\":\"$2a$10$C1o/L06fq/IWAQnDuJ5wrezlOo.6CbG.xVJz2bRUOXpfVJ9CAnyj6\",\"expiry\":1715881962}}"], ["updated_at", "2024-05-02 17:52:42.375621"], ["id", 3]]
+  [1m[35m (7.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ? [0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "tokens" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["tokens", "{\"2B7ONdP0qLb9pCIkD3s-Bg\":{\"token\":\"$2a$10$VCdVSwGycedKMJJ.Crjueumo9tvqMrq7B8zMkd7gRuZL8VUZWgGx2\",\"expiry\":1715823369,\"previous_token\":\"$2a$10$CYu3rrqrp1Jsn3kpVNKBwOnnj7NRptV/ngiMrMUKUizbBuBJ/sYO.\",\"updated_at\":\"2024-05-02T01:36:09Z\"},\"sl1H3aQvBmezzsKjAloUMw\":{\"token\":\"$2a$10$TtLJU3dZLwOq9jAoBvlus.IRl583dReU10VRWtPhjwXVN8myu3xUG\",\"expiry\":1715880808,\"previous_token\":\"$2a$10$xr.a81zlshBFrOGMs/kErOuCxgQWzd9Gv9bWYTsSUuWUvBip90NZ2\",\"updated_at\":\"2024-05-02T17:33:28Z\"},\"aaWwuBj_vmHNz9YjZaGVIQ\":{\"token\":\"$2a$10$ZhGzSu1foWWTR/tjfNqunefWrv8Fai6DtCfU7.kcI6rBsNnvYPLNC\",\"expiry\":1715881323,\"previous_token\":\"$2a$10$V.m3bWurN0b3pTp6TZQr2OKa8D5URWbPOQneUusMJiDEr5gAQ4ILO\",\"updated_at\":\"2024-05-02T17:42:03Z\"},\"vF24fNP-CLvr4QjN-5luxQ\":{\"token\":\"$2a$10$UCXB8f9/X6PCKa8jD3iYIO4yXZibKicCrhP567QoSh5hMZXOKqeQG\",\"expiry\":1715881840,\"previous_token\":\"$2a$10$GEVC0qAqVDVYPW7QZnwQuOzOd78R6qA8AsJBIXBTcNd5nKJaU.imC\",\"updated_at\":\"2024-05-02T17:50:40Z\"},\"pCHGWhaV6hiFv_u1DNWK0Q\":{\"token\":\"$2a$10$7TtZyM6kscnDogxDqhRldeCjqLqVlSsMcnWAjmVf1QAwoZcVlhS0y\",\"expiry\":1715881962,\"previous_token\":\"$2a$10$C1o/L06fq/IWAQnDuJ5wrezlOo.6CbG.xVJz2bRUOXpfVJ9CAnyj6\",\"updated_at\":\"2024-05-02T17:52:42Z\"}}"], ["updated_at", "2024-05-02 17:52:42.441095"], ["id", 3]]
+  [1m[35m (7.5ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 359ms (Views: 0.1ms | ActiveRecord: 16.7ms | Allocations: 17748)
+
+
+Started POST "/auth/sign_in" for ::1 at 2024-05-03 02:56:37 +0900
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"test@test.com", "password"=>"[FILTERED]", "session"=>{"email"=>"test@test.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :session[0m
+[31mUnpermitted parameter: :session[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? AND "users"."provider" = ? LIMIT ?[0m  [["email", "test@test.com"], ["provider", "email"], ["LIMIT", 1]]
+[31mUnpermitted parameter: :session[0m
+[31mUnpermitted parameter: :session[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ? [0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "tokens" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["tokens", "{\"2B7ONdP0qLb9pCIkD3s-Bg\":{\"token\":\"$2a$10$VCdVSwGycedKMJJ.Crjueumo9tvqMrq7B8zMkd7gRuZL8VUZWgGx2\",\"expiry\":1715823369,\"previous_token\":\"$2a$10$CYu3rrqrp1Jsn3kpVNKBwOnnj7NRptV/ngiMrMUKUizbBuBJ/sYO.\",\"updated_at\":\"2024-05-02T01:36:09Z\"},\"sl1H3aQvBmezzsKjAloUMw\":{\"token\":\"$2a$10$TtLJU3dZLwOq9jAoBvlus.IRl583dReU10VRWtPhjwXVN8myu3xUG\",\"expiry\":1715880808,\"previous_token\":\"$2a$10$xr.a81zlshBFrOGMs/kErOuCxgQWzd9Gv9bWYTsSUuWUvBip90NZ2\",\"updated_at\":\"2024-05-02T17:33:28Z\"},\"aaWwuBj_vmHNz9YjZaGVIQ\":{\"token\":\"$2a$10$ZhGzSu1foWWTR/tjfNqunefWrv8Fai6DtCfU7.kcI6rBsNnvYPLNC\",\"expiry\":1715881323,\"previous_token\":\"$2a$10$V.m3bWurN0b3pTp6TZQr2OKa8D5URWbPOQneUusMJiDEr5gAQ4ILO\",\"updated_at\":\"2024-05-02T17:42:03Z\"},\"vF24fNP-CLvr4QjN-5luxQ\":{\"token\":\"$2a$10$UCXB8f9/X6PCKa8jD3iYIO4yXZibKicCrhP567QoSh5hMZXOKqeQG\",\"expiry\":1715881840,\"previous_token\":\"$2a$10$GEVC0qAqVDVYPW7QZnwQuOzOd78R6qA8AsJBIXBTcNd5nKJaU.imC\",\"updated_at\":\"2024-05-02T17:50:40Z\"},\"pCHGWhaV6hiFv_u1DNWK0Q\":{\"token\":\"$2a$10$7TtZyM6kscnDogxDqhRldeCjqLqVlSsMcnWAjmVf1QAwoZcVlhS0y\",\"expiry\":1715881962,\"previous_token\":\"$2a$10$C1o/L06fq/IWAQnDuJ5wrezlOo.6CbG.xVJz2bRUOXpfVJ9CAnyj6\",\"updated_at\":\"2024-05-02T17:52:42Z\"},\"HIdpihOX0IM0mcttRP07Ig\":{\"token\":\"$2a$10$iozzwQ9Z9zegiBA2zYHLYesfNzkhcKwwSzUPGUq69eECWPiTjAwH6\",\"expiry\":1715882197}}"], ["updated_at", "2024-05-02 17:56:37.810782"], ["id", 3]]
+  [1m[35m (10.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ? [0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "tokens" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["tokens", "{\"2B7ONdP0qLb9pCIkD3s-Bg\":{\"token\":\"$2a$10$VCdVSwGycedKMJJ.Crjueumo9tvqMrq7B8zMkd7gRuZL8VUZWgGx2\",\"expiry\":1715823369,\"previous_token\":\"$2a$10$CYu3rrqrp1Jsn3kpVNKBwOnnj7NRptV/ngiMrMUKUizbBuBJ/sYO.\",\"updated_at\":\"2024-05-02T01:36:09Z\"},\"sl1H3aQvBmezzsKjAloUMw\":{\"token\":\"$2a$10$TtLJU3dZLwOq9jAoBvlus.IRl583dReU10VRWtPhjwXVN8myu3xUG\",\"expiry\":1715880808,\"previous_token\":\"$2a$10$xr.a81zlshBFrOGMs/kErOuCxgQWzd9Gv9bWYTsSUuWUvBip90NZ2\",\"updated_at\":\"2024-05-02T17:33:28Z\"},\"aaWwuBj_vmHNz9YjZaGVIQ\":{\"token\":\"$2a$10$ZhGzSu1foWWTR/tjfNqunefWrv8Fai6DtCfU7.kcI6rBsNnvYPLNC\",\"expiry\":1715881323,\"previous_token\":\"$2a$10$V.m3bWurN0b3pTp6TZQr2OKa8D5URWbPOQneUusMJiDEr5gAQ4ILO\",\"updated_at\":\"2024-05-02T17:42:03Z\"},\"vF24fNP-CLvr4QjN-5luxQ\":{\"token\":\"$2a$10$UCXB8f9/X6PCKa8jD3iYIO4yXZibKicCrhP567QoSh5hMZXOKqeQG\",\"expiry\":1715881840,\"previous_token\":\"$2a$10$GEVC0qAqVDVYPW7QZnwQuOzOd78R6qA8AsJBIXBTcNd5nKJaU.imC\",\"updated_at\":\"2024-05-02T17:50:40Z\"},\"pCHGWhaV6hiFv_u1DNWK0Q\":{\"token\":\"$2a$10$7TtZyM6kscnDogxDqhRldeCjqLqVlSsMcnWAjmVf1QAwoZcVlhS0y\",\"expiry\":1715881962,\"previous_token\":\"$2a$10$C1o/L06fq/IWAQnDuJ5wrezlOo.6CbG.xVJz2bRUOXpfVJ9CAnyj6\",\"updated_at\":\"2024-05-02T17:52:42Z\"},\"HIdpihOX0IM0mcttRP07Ig\":{\"token\":\"$2a$10$14MtbntV.RcQyUDv2DeaQ.Fj1NIhkFwhj.nU3HUcWUzTKgtuhgyi6\",\"expiry\":1715882197,\"previous_token\":\"$2a$10$iozzwQ9Z9zegiBA2zYHLYesfNzkhcKwwSzUPGUq69eECWPiTjAwH6\",\"updated_at\":\"2024-05-02T17:56:37Z\"}}"], ["updated_at", "2024-05-02 17:56:37.884428"], ["id", 3]]
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 358ms (Views: 0.2ms | ActiveRecord: 18.5ms | Allocations: 18795)
+
+
