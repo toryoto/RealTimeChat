@@ -1480,3 +1480,26 @@ Processing by Auth::RegistrationsController#create as HTML
 Completed 422 Unprocessable Entity in 473ms (Views: 0.7ms | ActiveRecord: 1.4ms | Allocations: 6068)
 
 
+Started POST "/auth" for ::1 at 2024-05-02 10:36:08 +0900
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Auth::RegistrationsController#create as HTML
+  Parameters: {"name"=>"test001", "email"=>"test@test.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "registration"=>{"name"=>"test001", "email"=>"test@test.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :registration[0m
+[31mUnpermitted parameter: :registration[0m
+[31mUnpermitted parameter: :registration[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) AND "users"."provider" = ? LIMIT ?[0m  [["email", "test@test.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (3.2ms)[0m  [1m[32mINSERT INTO "users" ("uid", "encrypted_password", "name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["uid", "test@test.com"], ["encrypted_password", "$2a$12$PyqgTxPfqsJnSq414Mv/vObntPx.T.DdIHSxvmXXAjyQXXnrffpOi"], ["name", "test001"], ["email", "test@test.com"], ["created_at", "2024-05-02 01:36:08.790892"], ["updated_at", "2024-05-02 01:36:08.790892"]]
+  [1m[35m (13.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Update (2.0ms)[0m  [1m[33mUPDATE "users" SET "tokens" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["tokens", "{\"2B7ONdP0qLb9pCIkD3s-Bg\":{\"token\":\"$2a$10$CYu3rrqrp1Jsn3kpVNKBwOnnj7NRptV/ngiMrMUKUizbBuBJ/sYO.\",\"expiry\":1715823368}}"], ["updated_at", "2024-05-02 01:36:08.970861"], ["id", 3]]
+  [1m[35m (15.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ? [0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "tokens" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["tokens", "{\"2B7ONdP0qLb9pCIkD3s-Bg\":{\"token\":\"$2a$10$VCdVSwGycedKMJJ.Crjueumo9tvqMrq7B8zMkd7gRuZL8VUZWgGx2\",\"expiry\":1715823369,\"previous_token\":\"$2a$10$CYu3rrqrp1Jsn3kpVNKBwOnnj7NRptV/ngiMrMUKUizbBuBJ/sYO.\",\"updated_at\":\"2024-05-02T01:36:09Z\"}}"], ["updated_at", "2024-05-02 01:36:09.267993"], ["id", 3]]
+  [1m[35m (15.2ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 1070ms (Views: 0.8ms | ActiveRecord: 53.8ms | Allocations: 35891)
+
+
