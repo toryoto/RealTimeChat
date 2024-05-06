@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <Navbar />
-    <ChatWindow @connectCable="connectCable" :messages="formattedMessages" />
+    <ChatWindow @connectCable="connectCable" :messages="formattedMessages" ref="chatWindow" />
     <NewChatForm @connectCable="connectCable" />
   </div>
 </template>
@@ -73,11 +73,16 @@ export default {
     // RoomChannelという名前のチャンネルと常時接続状態にする（ルーム選択機能がないため）
     this.messageChannel = cable.subscriptions.create('RoomChannel', {
       connected: () => {
-        this.getMessages()
+        this.getMessages().then(() => {
+          // refはHTML要素取得と子コンポーネントアクセスに使う
+          this.$refs.chatWindow.scrollToBottom()
+        })
       },
       // Railsから何かデータが送られたときに実行
       received: () => {
-        this.getMessages()
+        this.getMessages().then(() => {
+          this.$refs.chatWindow.scrollToBottom()
+        })
       }
     })
   },
