@@ -18,4 +18,15 @@ class MessagesController < ApplicationController
 
     render json: messages_array, status: :ok
   end
+
+  def destroy
+    message = Message.find(params[:id])
+
+    if message.user_id == current_user.id
+      message.destroy
+      head :no_content
+    else
+      render json: { error: 'Unauthorized' }, status: :unauthorized
+    end
+  end
 end
