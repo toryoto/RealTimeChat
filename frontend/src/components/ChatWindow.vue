@@ -1,6 +1,6 @@
 <template>
   <div class="chat-window">
-    <div v-if="messages" class="messages">
+    <div v-if="messages" class="messages" ref="messages">
       <ul v-for="message in messages" :key="message.id">
         <li :class="{ received: message.email !== uid, sent: message.email === uid }">
           <span class="name">{{ message.name }}</span>
@@ -75,6 +75,11 @@ export default {
       } catch(error) {
         console.log(error)
       }
+    },
+    // 画面を下までスクロールするメソッド（メッセージ作成時に実行する）
+    scrollToBottom() {
+      const element = this.$refs.messages
+      element.scrollTop = element.scrollHeight
     }
   },
 }
