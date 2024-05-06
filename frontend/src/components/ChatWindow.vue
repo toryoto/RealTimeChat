@@ -4,8 +4,12 @@
       <ul v-for="message in messages" :key="message.id">
         <li :class="{ received: message.email !== uid, sent: message.email === uid }">
           <span class="name">{{ message.name }}</span>
-          <div class="message" @dblclick="handleLike(message)">
+          <div class="message" @dblclick="handleLike(message)" @contextmenu.prevent="openContextMenu">
             {{ message.content }}
+            <div v-if="showContextMenu" class="context-menu">
+              <button>編集</button>
+              <button @click="deleteMessage(message.id)">削除</button>
+            </div>
             <div v-if="message.likes.length" class="heart-container">
               <font-awesome-icon icon="heart" class="heart" />
               <span class="heart-count">{{ message.likes.length }}</span>
@@ -26,10 +30,32 @@ export default {
   props: ["messages"],
   data() {
     return {
-      uid: localStorage.getItem('uid')
+      uid: localStorage.getItem('uid'),
+      showContextMenu: false
     }
   },
   methods: {
+    openContextMenu() {
+      this.showContextMenu = true;
+    },
+    async deleteMessage(messageId) {
+      try {
+        const res = await axios.delete(`http://localhost:3000/messages/${messageId}`, {
+          headers: {
+            uid: this.uid,
+            "access-token": window.localStorage.getItem('access-token'),
+            client: window.localStorage.getItem('client')
+          }
+        })
+
+        if(!res) new Error('削除できませんでした')
+
+        this.$emit('connectCable')
+        this.showContextMenu = false
+      } catch (error) {
+        console.log(error)
+      }
+    },
     handleLike(message) {
       for (let i = 0; i < message.likes.length; i++) {
         const like = message.likes[i]

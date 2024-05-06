@@ -3,6 +3,8 @@ class MessagesController < ApplicationController
 
   def index
     messages = Message.eager_load(:user, [likes: :user])
+    p 'ｙぽよおよおよ'
+    p current_user.id
     messages_array = messages.map do |message|
       {
         id: message.id,
