@@ -4,9 +4,9 @@
       <ul v-for="message in messages" :key="message.id">
         <li :class="{ received: message.email !== uid, sent: message.email === uid }">
           <span class="name">{{ message.name }}</span>
-          <div class="message" @dblclick="handleLike(message)" @contextmenu.prevent="openContextMenu">
+          <div class="message" @dblclick="handleLike(message)" @contextmenu.prevent="openContextMenu(message)" v-click-out-side="closeContextMenu">
             {{ message.content }}
-            <div v-if="showContextMenu" class="context-menu">
+            <div v-if="message.id === contextMenuMessageId" class="context-menu">
               <button>編集</button>
               <button @click="deleteMessage(message.id)">削除</button>
             </div>
@@ -23,20 +23,27 @@
 </template>
 
 <script>
+import clickOutSide from "@mahdikhashan/vue3-click-outside";
 import axios from 'axios'
 
 export default {
+  directives: {
+    clickOutSide,
+  },
   emits: ['connectCable'],
   props: ["messages"],
   data() {
     return {
       uid: localStorage.getItem('uid'),
-      showContextMenu: false
+      contextMenuMessageId: null
     }
   },
   methods: {
-    openContextMenu() {
-      this.showContextMenu = true;
+    openContextMenu(message) {
+      this.contextMenuMessageId = message.id;
+    },
+    closeContextMenu() {
+      this.contextMenuMessageId = null
     },
     async deleteMessage(messageId) {
       try {
@@ -196,8 +203,30 @@ export default {
   .received .message::selection {
     background: #eee;
   }
-
   .sent .message::selection {
     background: #677bb4;
+  }
+  .context-menu {
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+    border-radius: 5px;
+  }
+  .context-menu button {
+    background-color: transparent;
+    border: none;
+    color: black;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+  }
+  .context-menu button:hover {
+    background-color: #f1f1f1;
   }
 </style>
