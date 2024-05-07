@@ -213,8 +213,10 @@ export default {
     min-width: 150px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    right: 0;
     border-radius: 5px;
+  }
+  .sent .context-menu {
+    right: 100px;
   }
   .context-menu button {
     background-color: transparent;
