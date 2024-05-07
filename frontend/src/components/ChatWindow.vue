@@ -8,7 +8,7 @@
             {{ message.content }}
             <div v-if="message.id === contextMenuMessageId" class="context-menu">
               <button>編集</button>
-              <button @click="deleteMessage(message.id)">削除</button>
+              <button v-if="message.email === uid" @click="deleteMessage(message.id)">削除</button>
             </div>
             <div v-if="message.likes.length" class="heart-container">
               <font-awesome-icon icon="heart" class="heart" />
@@ -40,6 +40,7 @@ export default {
   },
   methods: {
     openContextMenu(message) {
+    console.log(message.email === this.uid)
       this.contextMenuMessageId = message.id;
     },
     closeContextMenu() {
