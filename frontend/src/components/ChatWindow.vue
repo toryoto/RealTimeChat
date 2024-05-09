@@ -6,9 +6,9 @@
           <span class="name">{{ message.name }}</span>
           <div class="message" @dblclick="handleLike(message)" @contextmenu.prevent="openContextMenu(message)" v-click-out-side="closeContextMenu">
             {{ message.content }}
-            <div v-if="message.id === contextMenuMessageId" class="context-menu">
-              <button>編集</button>
-              <button v-if="message.email === uid" @click="deleteMessage(message.id)">削除</button>
+            <div v-if="message.id === contextMenuMessageId  && message.email === uid" class="context-menu">
+              <button @click="openEditModal(message)">編集</button>
+              <button @click="deleteMessage(message.id)">削除</button>
             </div>
             <div v-if="message.likes.length" class="heart-container">
               <font-awesome-icon icon="heart" class="heart" />
@@ -20,13 +20,18 @@
       </ul>
     </div>
   </div>
+  <MessageEditModal v-show="isOpenEditModal" :message="messageToEdit" @close="closeEditModal" />
 </template>
 
 <script>
-import clickOutSide from "@mahdikhashan/vue3-click-outside";
+import MessageEditModal from '../components/MessageEditModal.vue'
+import clickOutSide from "@mahdikhashan/vue3-click-outside"
 import axios from 'axios'
 
 export default {
+  components: {
+    MessageEditModal
+  },
   directives: {
     clickOutSide,
   },
@@ -35,16 +40,26 @@ export default {
   data() {
     return {
       uid: localStorage.getItem('uid'),
-      contextMenuMessageId: null
+      contextMenuMessageId: null,
+      isOpenEditModal: false,
+      messageToEdit: null,
     }
   },
   methods: {
     openContextMenu(message) {
-    console.log(message.email === this.uid)
       this.contextMenuMessageId = message.id;
     },
     closeContextMenu() {
       this.contextMenuMessageId = null
+    },
+    openEditModal(message) {
+      this.messageToEdit = message
+      console.log(this.messageToEdit.content, 111)
+      this.isOpenEditModal = true
+    },
+    closeEditModal() {
+      this.$emit('connectCable')
+      this.isOpenEditModal = false
     },
     async deleteMessage(messageId) {
       try {
