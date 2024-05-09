@@ -3,8 +3,6 @@ class MessagesController < ApplicationController
 
   def index
     messages = Message.eager_load(:user, [likes: :user])
-    p 'ｙぽよおよおよ'
-    p current_user.id
     messages_array = messages.map do |message|
       {
         id: message.id,
@@ -21,6 +19,15 @@ class MessagesController < ApplicationController
     render json: messages_array, status: :ok
   end
 
+  def update
+    message = Message.find(params[:id])
+    if message.update(message_params)
+      render json: message
+    else
+      render json: message.errors, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     message = Message.find(params[:id])
 
@@ -30,5 +37,10 @@ class MessagesController < ApplicationController
     else
       render json: { error: 'Unauthorized' }, status: :unauthorized
     end
+  end
+
+  private
+  def message_params
+    params.require(:message).permit(:content, :user_id)
   end
 end
