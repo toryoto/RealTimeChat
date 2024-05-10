@@ -2,8 +2,8 @@
   <div>
     <h2>ログイン</h2>
     <form @submit.prevent="login">
-      <input type="email" required placeholder="メールアドレス" v-model="email">
-      <input type="password" required placeholder="パスワード" v-model="password">
+      <input type="email" required placeholder="メールアドレス" v-model="email" autocomplete="email">
+      <input type="password" required placeholder="パスワード" v-model="password" autocomplete="password">
       <div class="error">{{ error }}</div>
       <button>ログインする</button>
     </form>
