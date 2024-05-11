@@ -39,7 +39,7 @@ export default {
   methods: {
     async getMessages() {
       try {
-        const res = await axios.get('http://localhost:3000/messages', {
+        const res = await axios.get('http://localhost:3000/api/messages', {
           headers: {
             uid: window.localStorage.getItem('uid'),
             "access-token": window.localStorage.getItem('access-token'),

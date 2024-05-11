@@ -25,7 +25,7 @@ export default {
     },
     async updateMessage() {
       try {
-        const res = await axios.put(`http://localhost:3000/messages/${this.message.id}`, { content: this.editedMessage }, {
+        const res = await axios.put(`http://localhost:3000/api/messages/${this.message.id}`, { content: this.editedMessage }, {
           headers: {
             uid: localStorage.getItem('uid'),
             "access-token": window.localStorage.getItem('access-token'),

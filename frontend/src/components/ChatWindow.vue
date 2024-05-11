@@ -63,7 +63,7 @@ export default {
     },
     async deleteMessage(messageId) {
       try {
-        const res = await axios.delete(`http://localhost:3000/messages/${messageId}`, {
+        const res = await axios.delete(`http://localhost:3000/api/messages/${messageId}`, {
           headers: {
             uid: this.uid,
             "access-token": window.localStorage.getItem('access-token'),
@@ -92,7 +92,7 @@ export default {
     async createLike(messageId) {
       try {
         // POSTメソッドでヘッダー情報付与するときは第三引数
-        const res = await axios.post(`http://localhost:3000/messages/${messageId}/likes`, {}, {
+        const res = await axios.post(`http://localhost:3000/api/messages/${messageId}/likes`, {}, {
           headers: {
             uid: this.uid,
             "access-token": window.localStorage.getItem('access-token'),
@@ -110,7 +110,7 @@ export default {
     },
     async deleteLike(likeId) {
       try {
-        const res  = await axios.delete(`http://localhost:3000/likes/${likeId}`, {
+        const res  = await axios.delete(`http://localhost:3000/api/likes/${likeId}`, {
           headers: {
             uid: this.uid,
             "access-token": window.localStorage.getItem("access-token"),
