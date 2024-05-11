@@ -1,5 +1,5 @@
-class MessagesController < ApplicationController
-  before_action :authenticate_user!, only: ["index"]
+class Api::MessagesController < ApplicationController
+  before_action :authenticate_api_user!, only: ["index"]
 
   def index
     messages = Message.eager_load(:user, [likes: :user])
