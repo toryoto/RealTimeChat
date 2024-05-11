@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
     resources :likes, only: ['destroy']
 
+    ## devise_token_authのカスタムアクションはルーティングを手動で設定する必要がある
     get 'auth/:id', to: 'auth/registrations#show'
   end
 end
