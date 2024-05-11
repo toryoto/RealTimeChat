@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :api, format: :json do
     mount_devise_token_auth_for 'User', at: 'auth', controllers: {
-      registrations: 'auth/registrations'
+      registrations: 'api/auth/registrations'
     }
 
     resources :messages, only: ['index', 'update', 'destroy'] do
@@ -11,5 +11,7 @@ Rails.application.routes.draw do
     end
 
     resources :likes, only: ['destroy']
+
+    get 'auth/:id', to: 'auth/registrations#show'
   end
 end

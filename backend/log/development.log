@@ -17664,3 +17664,105 @@ Completed 200 OK in 660ms (Views: 0.5ms | ActiveRecord: 11.7ms | Allocations: 32
 
 Finished "/cable/" [WebSocket] for ::1 at 2024-05-11 23:48:44 +0900
 RoomChannel stopped streaming from room_channel
+Started GET "/api/auth/validate_token" for ::1 at 2024-05-12 03:31:18 +0900
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DeviseTokenAuth::TokenValidationsController#validate_token as HTML
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "test@test.com"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Completed 200 OK in 121ms (Views: 0.9ms | ActiveRecord: 8.6ms | Allocations: 9075)
+
+
+Started GET "/api/auth/validate_token" for ::1 at 2024-05-12 03:31:19 +0900
+Processing by DeviseTokenAuth::TokenValidationsController#validate_token as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "test@test.com"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Completed 200 OK in 14ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 2908)
+
+
+Started GET "/cable" for ::1 at 2024-05-12 03:31:19 +0900
+Started GET "/cable/" [WebSocket] for ::1 at 2024-05-12 03:31:19 +0900
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+RoomChannel is transmitting the subscription confirmation
+RoomChannel is streaming from room_channel
+Started GET "/api/messages" for ::1 at 2024-05-12 03:31:19 +0900
+Processing by Api::MessagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "test@test.com"], ["LIMIT", 1]]
+  [1m[35mSQL (2.9ms)[0m  [1m[34mSELECT "messages"."id" AS t0_r0, "messages"."user_id" AS t0_r1, "messages"."content" AS t0_r2, "messages"."created_at" AS t0_r3, "messages"."updated_at" AS t0_r4, "users"."id" AS t1_r0, "users"."provider" AS t1_r1, "users"."uid" AS t1_r2, "users"."encrypted_password" AS t1_r3, "users"."name" AS t1_r4, "users"."email" AS t1_r5, "users"."tokens" AS t1_r6, "users"."created_at" AS t1_r7, "users"."updated_at" AS t1_r8, "likes"."id" AS t2_r0, "likes"."user_id" AS t2_r1, "likes"."message_id" AS t2_r2, "likes"."created_at" AS t2_r3, "likes"."updated_at" AS t2_r4, "users_likes"."id" AS t3_r0, "users_likes"."provider" AS t3_r1, "users_likes"."uid" AS t3_r2, "users_likes"."encrypted_password" AS t3_r3, "users_likes"."name" AS t3_r4, "users_likes"."email" AS t3_r5, "users_likes"."tokens" AS t3_r6, "users_likes"."created_at" AS t3_r7, "users_likes"."updated_at" AS t3_r8 FROM "messages" LEFT OUTER JOIN "users" ON "users"."id" = "messages"."user_id" LEFT OUTER JOIN "likes" ON "likes"."message_id" = "messages"."id" LEFT OUTER JOIN "users" "users_likes" ON "users_likes"."id" = "likes"."user_id"[0m
+  ↳ app/controllers/api/messages_controller.rb:6:in `map'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Completed 200 OK in 79ms (Views: 1.3ms | ActiveRecord: 4.3ms | Allocations: 17888)
+
+
+Started DELETE "/api/likes/22" for ::1 at 2024-05-12 03:31:30 +0900
+Processing by Api::LikesController#destroy as HTML
+  Parameters: {"id"=>"22"}
+  [1m[36mLike Load (0.9ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."id" = ? LIMIT ?[0m  [["id", 22], ["LIMIT", 1]]
+  ↳ app/controllers/api/likes_controller.rb:16:in `destroy'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/likes_controller.rb:18:in `destroy'
+  [1m[36mLike Destroy (2.2ms)[0m  [1m[31mDELETE FROM "likes" WHERE "likes"."id" = ?[0m  [["id", 22]]
+  ↳ app/controllers/api/likes_controller.rb:18:in `destroy'
+  [1m[35m (12.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/likes_controller.rb:18:in `destroy'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/likes_controller.rb:19:in `destroy'
+Completed 200 OK in 30ms (Views: 0.2ms | ActiveRecord: 16.0ms | Allocations: 5760)
+
+
+RoomChannel#receive({"email"=>"test@test.com"})
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@test.com"], ["LIMIT", 1]]
+  ↳ app/channels/room_channel.rb:12:in `receive'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/channels/room_channel.rb:13:in `receive'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/channels/room_channel.rb:13:in `receive'
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/channels/room_channel.rb:13:in `receive'
+[ActionCable] Broadcasting to room_channel: {:message=>nil, :name=>"test001", :created_at=>nil}
+RoomChannel transmitting {"message"=>nil, "name"=>"test001", "created_at"=>nil} (via streamed from room_channel)
+Started GET "/api/messages" for ::1 at 2024-05-12 03:31:30 +0900
+Processing by Api::MessagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "test@test.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[34mSELECT "messages"."id" AS t0_r0, "messages"."user_id" AS t0_r1, "messages"."content" AS t0_r2, "messages"."created_at" AS t0_r3, "messages"."updated_at" AS t0_r4, "users"."id" AS t1_r0, "users"."provider" AS t1_r1, "users"."uid" AS t1_r2, "users"."encrypted_password" AS t1_r3, "users"."name" AS t1_r4, "users"."email" AS t1_r5, "users"."tokens" AS t1_r6, "users"."created_at" AS t1_r7, "users"."updated_at" AS t1_r8, "likes"."id" AS t2_r0, "likes"."user_id" AS t2_r1, "likes"."message_id" AS t2_r2, "likes"."created_at" AS t2_r3, "likes"."updated_at" AS t2_r4, "users_likes"."id" AS t3_r0, "users_likes"."provider" AS t3_r1, "users_likes"."uid" AS t3_r2, "users_likes"."encrypted_password" AS t3_r3, "users_likes"."name" AS t3_r4, "users_likes"."email" AS t3_r5, "users_likes"."tokens" AS t3_r6, "users_likes"."created_at" AS t3_r7, "users_likes"."updated_at" AS t3_r8 FROM "messages" LEFT OUTER JOIN "users" ON "users"."id" = "messages"."user_id" LEFT OUTER JOIN "likes" ON "likes"."message_id" = "messages"."id" LEFT OUTER JOIN "users" "users_likes" ON "users_likes"."id" = "likes"."user_id"[0m
+  ↳ app/controllers/api/messages_controller.rb:6:in `map'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Completed 200 OK in 13ms (Views: 1.4ms | ActiveRecord: 0.9ms | Allocations: 7650)
+
+
+Started DELETE "/api/likes/15" for ::1 at 2024-05-12 03:31:32 +0900
+Processing by Api::LikesController#destroy as HTML
+  Parameters: {"id"=>"15"}
+  [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."id" = ? LIMIT ?[0m  [["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/api/likes_controller.rb:16:in `destroy'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/likes_controller.rb:18:in `destroy'
+  [1m[36mLike Destroy (0.5ms)[0m  [1m[31mDELETE FROM "likes" WHERE "likes"."id" = ?[0m  [["id", 15]]
+  ↳ app/controllers/api/likes_controller.rb:18:in `destroy'
+  [1m[35m (11.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/likes_controller.rb:18:in `destroy'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/likes_controller.rb:19:in `destroy'
+Completed 200 OK in 25ms (Views: 0.3ms | ActiveRecord: 12.4ms | Allocations: 5103)
+
+
+RoomChannel#receive({"email"=>"test@test.com"})
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@test.com"], ["LIMIT", 1]]
+  ↳ app/channels/room_channel.rb:12:in `receive'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/channels/room_channel.rb:13:in `receive'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/channels/room_channel.rb:13:in `receive'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/channels/room_channel.rb:13:in `receive'
+[ActionCable] Broadcasting to room_channel: {:message=>nil, :name=>"test001", :created_at=>nil}
+RoomChannel transmitting {"message"=>nil, "name"=>"test001", "created_at"=>nil} (via streamed from room_channel)
+Started GET "/api/messages" for ::1 at 2024-05-12 03:31:32 +0900
+Processing by Api::MessagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "test@test.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[34mSELECT "messages"."id" AS t0_r0, "messages"."user_id" AS t0_r1, "messages"."content" AS t0_r2, "messages"."created_at" AS t0_r3, "messages"."updated_at" AS t0_r4, "users"."id" AS t1_r0, "users"."provider" AS t1_r1, "users"."uid" AS t1_r2, "users"."encrypted_password" AS t1_r3, "users"."name" AS t1_r4, "users"."email" AS t1_r5, "users"."tokens" AS t1_r6, "users"."created_at" AS t1_r7, "users"."updated_at" AS t1_r8, "likes"."id" AS t2_r0, "likes"."user_id" AS t2_r1, "likes"."message_id" AS t2_r2, "likes"."created_at" AS t2_r3, "likes"."updated_at" AS t2_r4, "users_likes"."id" AS t3_r0, "users_likes"."provider" AS t3_r1, "users_likes"."uid" AS t3_r2, "users_likes"."encrypted_password" AS t3_r3, "users_likes"."name" AS t3_r4, "users_likes"."email" AS t3_r5, "users_likes"."tokens" AS t3_r6, "users_likes"."created_at" AS t3_r7, "users_likes"."updated_at" AS t3_r8 FROM "messages" LEFT OUTER JOIN "users" ON "users"."id" = "messages"."user_id" LEFT OUTER JOIN "likes" ON "likes"."message_id" = "messages"."id" LEFT OUTER JOIN "users" "users_likes" ON "users_likes"."id" = "likes"."user_id"[0m
+  ↳ app/controllers/api/messages_controller.rb:6:in `map'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Completed 200 OK in 16ms (Views: 2.1ms | ActiveRecord: 1.0ms | Allocations: 7585)
+
+
