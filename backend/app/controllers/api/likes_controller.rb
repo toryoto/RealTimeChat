@@ -1,12 +1,12 @@
-class LikesController < ApplicationController
-  before_action :authenticate_user!, only: ['create']
+class Api::LikesController < ApplicationController
+  before_action :authenticate_api_user!, only: ['create']
 
   def create
     # paramsはパラメータを参照
-    like = Like.new(message_id: params[:id], user_id: current_user.id)
+    like = Like.new(message_id: params[:id], user_id: current_api_user.id)
 
     if like.save
-      render json: { id: like.id, email: current_user.email, message: '成功しました' }, status: :ok
+      render json: { id: like.id, email: current_api_user.email, message: '成功しました' }, status: :ok
     else
       render json: { message: '保存出来ませんでした', errors: like.errors.messages }, status: :bad_request
     end
