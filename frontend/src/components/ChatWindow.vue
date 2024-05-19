@@ -247,4 +247,12 @@ export default {
   .context-menu button:hover {
     background-color: #f1f1f1;
   }
+  .name a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .name a:hover {
+    text-decoration: underline;
+  }
 </style>
