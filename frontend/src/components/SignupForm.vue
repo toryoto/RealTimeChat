@@ -31,7 +31,7 @@ export default {
     async signUp () {
       this.error = null
       try {
-        const res = await axios.post('http://localhost:3000/auth', {
+        const res = await axios.post('http://localhost:3000/api/auth', {
           name: this.name,
           email: this.email,
           password: this.password,
