@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Welcome from '../views/Welcome'
 import Chatroom from '../views/Chatroom'
 import useValidate from '../auth/validate'
+import UserDetails from '../views/UserDetails'
 
 const { error, validate } = useValidate()
 
@@ -58,6 +59,12 @@ const routes = [
     path: '/chatroom',
     name: 'Chatroom',
     component: Chatroom,
+    beforeEnter: requireAuth
+  },
+  {
+    path: '/user/:id',
+    name: 'UserDetails',
+    component: UserDetails,
     beforeEnter: requireAuth
   }
 ]
