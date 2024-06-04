@@ -3,7 +3,7 @@
     <div v-if="messages" class="messages" ref="messages">
       <ul v-for="message in messages" :key="message.id">
         <li :class="{ received: message.email !== uid, sent: message.email === uid }">
-          <span class="name">{{ message.name }}</span>
+          <span class="name"><router-link :to="{ name: 'UserDetails', params: { id: message.user_id }}">{{ message.name }}</router-link></span>
           <div class="message" @dblclick="handleLike(message)" @contextmenu.prevent="openContextMenu(message)" v-click-out-side="closeContextMenu">
             {{ message.content }}
             <div v-if="message.id === contextMenuMessageId  && message.email === uid" class="context-menu">
