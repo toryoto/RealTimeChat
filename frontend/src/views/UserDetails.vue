@@ -4,7 +4,21 @@
     <button @click="goBack" class="back-button">戻る</button>
     <div v-if="user" class="user-info">
       <p><strong>ユーザー名:</strong> {{ user.name }}</p>
-      <p><strong>メール:</strong> {{ user.email }}</p>
+      <p><strong>メール:</strong><span v-if="isEmailPublic">{{ user.email }}</span></p>
+      <p><strong>メールアドレス公開</strong>
+        <Switch
+          v-model="isEmailPublic"
+          :class="isEmailPublic ? 'bg-blue-600' : 'bg-gray-200'"
+          class="relative inline-flex h-6 w-11 items-center rounded-full"
+          @change="updateEmailVisibility"
+        >
+          <span class="sr-only">Toggle email visibility</span>
+          <span
+            :class="isEmailPublic ? 'translate-x-6' : 'translate-x-1'"
+            class="inline-block h-4 w-4 transform rounded-full bg-white transition"
+          />
+        </Switch>
+      </p>
     </div>
     <div v-else>
       <p>ユーザー情報を読み込み中...</p>
@@ -14,11 +28,17 @@
 
 <script>
 import axios from 'axios'
+import { Switch } from '@headlessui/vue';
+
 export default {
+  components: {
+    Switch
+  },
   data() {
     return {
       user: null,
-      userId: this.$route.params.id
+      userId: this.$route.params.id,
+      isEmailPublic: false,
     };
   },
   mounted() {
@@ -38,7 +58,23 @@ export default {
           console.error('Error fetching user');
         }
         this.user = res.data
+        this.isEmailPublic = res.data.isEmailPublic
       } catch(error) {
+        console.log(error)
+      }
+    },
+    async updateEmailVisibility() {
+      try {
+        await axios.put(`http://localhost:3000/api/users/${this.userId}/email_visibility`, {
+          is_email_public: this.isEmailPublic
+        }, {
+          headers: {
+            uid: window.localStorage.getItem('uid'),
+            "access-token": window.localStorage.getItem('access-token'),
+            client:window.localStorage.getItem('client')
+          }
+        })
+      } catch (error) {
         console.log(error)
       }
     },
