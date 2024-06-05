@@ -6,18 +6,7 @@
       <p><strong>ユーザー名:</strong> {{ user.name }}</p>
       <p><strong>メール:</strong><span v-if="isEmailPublic">{{ user.email }}</span></p>
       <p><strong>メールアドレス公開</strong>
-        <Switch
-          v-model="isEmailPublic"
-          :class="isEmailPublic ? 'bg-blue-600' : 'bg-gray-200'"
-          class="relative inline-flex h-6 w-11 items-center rounded-full"
-          @update:modelValue="updateEmailVisibility"
-        >
-          <span class="sr-only">Toggle email visibility</span>
-          <span
-            :class="isEmailPublic ? 'translate-x-6' : 'translate-x-1'"
-            class="inline-block h-4 w-4 transform rounded-full bg-white transition"
-          />
-        </Switch>
+        <Toggle v-model="isEmailPublic" @change="updateEmailVisibility" />
       </p>
     </div>
     <div v-else>
@@ -28,12 +17,12 @@
 
 <script>
 import axios from 'axios'
-import { Switch } from '@headlessui/vue';
+import Toggle from '@vueform/toggle'
 
 export default {
   components: {
-    Switch
-  },
+      Toggle,
+    },
   data() {
     return {
       user: null,
@@ -64,8 +53,7 @@ export default {
         console.log(error)
       }
     },
-    async updateEmailVisibility(value) {
-      this.isEmailPublic = value;
+    async updateEmailVisibility() {
       try {
         await axios.put(`http://localhost:3000/api/users/${this.userId}/email_visibility`, {
           user: {
