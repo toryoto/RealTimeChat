@@ -11,6 +11,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/vue-fontawesome": "^3.0.0-5",
+    "@headlessui/vue": "^1.7.22",
     "@mahdikhashan/vue3-click-outside": "^0.1.2",
     "actioncable": "^5.2.8-1",
     "axios": "^1.6.8",
@@ -26,7 +27,7 @@
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
-    "@vue/cli-service": "~5.0.0",
+    "@vue/cli-service": "^5.0.8",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3"
   },
