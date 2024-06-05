@@ -10,7 +10,7 @@
           v-model="isEmailPublic"
           :class="isEmailPublic ? 'bg-blue-600' : 'bg-gray-200'"
           class="relative inline-flex h-6 w-11 items-center rounded-full"
-          @change="updateEmailVisibility"
+          @update:modelValue="updateEmailVisibility"
         >
           <span class="sr-only">Toggle email visibility</span>
           <span
@@ -38,7 +38,7 @@ export default {
     return {
       user: null,
       userId: this.$route.params.id,
-      isEmailPublic: false,
+      isEmailPublic: null,
     };
   },
   mounted() {
@@ -58,24 +58,31 @@ export default {
           console.error('Error fetching user');
         }
         this.user = res.data
-        this.isEmailPublic = res.data.isEmailPublic
+        this.isEmailPublic = res.data.is_email_public;
+        console.log(this.isEmailPublic)
       } catch(error) {
         console.log(error)
       }
     },
-    async updateEmailVisibility() {
+    async updateEmailVisibility(value) {
+      this.isEmailPublic = value;
       try {
         await axios.put(`http://localhost:3000/api/users/${this.userId}/email_visibility`, {
-          is_email_public: this.isEmailPublic
+          user: {
+            is_email_public: this.isEmailPublic
+          }
         }, {
           headers: {
             uid: window.localStorage.getItem('uid'),
             "access-token": window.localStorage.getItem('access-token'),
             client:window.localStorage.getItem('client')
           }
-        })
+        });
+        
+        await this.getUser()
+
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     },
     goBack() {
