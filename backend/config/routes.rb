@@ -12,6 +12,10 @@ Rails.application.routes.draw do
 
     resources :likes, only: ['destroy']
 
-    resources :users, only: ['show']
+    resources :users, only: ['show'] do 
+      member do 
+        put 'email_visibility', to: 'users#update_email_visibility'
+      end
+    end
   end
 end

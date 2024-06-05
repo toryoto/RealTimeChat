@@ -1,6 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+import '@vueform/toggle/themes/default.css';
+
+
 
 import './assets/main.css'
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"

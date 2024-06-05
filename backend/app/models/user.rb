@@ -12,4 +12,5 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
   validates :name, length: { maximum: 30 }
+  validates :is_email_public, inclusion: { in: [true, false] }
 end
