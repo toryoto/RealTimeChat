@@ -43,6 +43,7 @@ export default {
         }
         if (this.error == null) {
           setItem(res.headers, res.data.data.name)
+          window.localStorage.setItem('user_id', res.data.data.id)
           this.$emit('redirectToChatRoom')
         }
         console.log({ res })
