@@ -7,7 +7,10 @@
         <p><strong>ユーザー名:</strong> <span>{{ user.name }}</span></p>
       </div>
       <div class="user-info-item">
-        <p><strong>メール:</strong> <span v-if="isEmailPublic">{{ user.email }}</span></p>
+        <p><strong>メール:</strong>
+          <span v-if="isEmailPublic">{{ user.email }}</span>
+          <span v-else>非公開</span>
+        </p>
       </div>
       <div class="user-info-item">
         <p v-if="isCurrentUser"><strong>メールアドレス公開:</strong>
