@@ -38,6 +38,7 @@ export default {
           console.log({ res })
           // console.log(res.headers['access-token'])
           setItem(res.headers, res.data.data.name)
+          window.localStorage.setItem('user_id', res.data.data.id)
           this.$emit('redirectToChatRoom')
         }
       } catch(error) {
