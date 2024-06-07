@@ -10,7 +10,7 @@
         <p><strong>メール:</strong> <span v-if="isEmailPublic">{{ user.email }}</span></p>
       </div>
       <div class="user-info-item">
-        <p><strong>メールアドレス公開:</strong>
+        <p v-if="isCurrentUser"><strong>メールアドレス公開:</strong>
           <Toggle v-model="isEmailPublic" @change="updateEmailVisibility" />
         </p>
       </div>
@@ -34,6 +34,7 @@ export default {
       user: null,
       userId: this.$route.params.id,
       isEmailPublic: null,
+      isCurrentUser: false,
     };
   },
   mounted() {
@@ -54,7 +55,12 @@ export default {
         }
         this.user = res.data
         this.isEmailPublic = res.data.is_email_public;
-        console.log(this.isEmailPublic)
+        
+        const loggedInUserId = window.localStorage.getItem('user_id');
+        console.log(loggedInUserId);
+        console.log(localStorage);
+        this.isCurrentUser = (loggedInUserId === this.userId);
+
       } catch(error) {
         console.log(error)
       }
