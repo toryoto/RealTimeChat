@@ -2,7 +2,10 @@ class Api::MessagesController < ApplicationController
   before_action :authenticate_api_user!, only: ["index"]
 
   def index
-    messages = Message.eager_load(:user, [likes: :user])
+    query = params[:q] || {}
+    @q = Message.ransack(query)
+
+    messages = @q.result.eager_load(:user, [likes: :user])
     messages_array = messages.map do |message|
       {
         id: message.id,
