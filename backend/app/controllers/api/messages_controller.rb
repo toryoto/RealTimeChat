@@ -31,7 +31,7 @@ class Api::MessagesController < ApplicationController
   def destroy
     message = Message.find(params[:id])
 
-    if message.user_id == current_user.id
+    if message.user_id == current_api_user.id
       message.destroy
       head :no_content
     else
