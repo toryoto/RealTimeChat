@@ -1,5 +1,6 @@
 <template>
   <div class="chat-window">
+    <input v-model="searchQuery" placeholder="Search messages..." @input="scrollToSearchedMessage" class="search-field" />
     <div v-if="messages" class="messages" ref="messages">
       <ul v-for="message in messages" :key="message.id">
         <li :class="{ received: message.email !== uid, sent: message.email === uid }">
