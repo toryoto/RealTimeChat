@@ -28,6 +28,7 @@
 import MessageEditModal from '../components/MessageEditModal.vue'
 import clickOutSide from "@mahdikhashan/vue3-click-outside"
 import axios from 'axios'
+import VueScrollTo from 'vue-scrollto';
 
 export default {
   components: {
@@ -35,6 +36,7 @@ export default {
   },
   directives: {
     clickOutSide,
+    scrollTo: VueScrollTo.directive
   },
   emits: ['connectCable'],
   props: ["messages"],
@@ -146,12 +148,25 @@ export default {
             client: window.localStorage.getItem('client')
           }
         });
-
-        const searchMessages = response.data;
-        //this.scrollToSearchedMessage(searchMessages);
-        console.log(searchMessages);
+        const searchedMessages = response.data;
+        this.scrollToSearchedMessage(searchedMessages);
+        //console.log(searchedMessages);
       } catch (error) {
         console.log('検索に失敗しました:', error);
+      }
+    },
+    scrollToSearchedMessage(searchedMessages) {
+      const query = this.searchQuery.toLowerCase();
+
+      const matchingMessage = searchedMessages.find(message => 
+        message.content.toLowerCase().includes(query)
+      );
+      console.log(matchingMessage);
+
+      if (matchingMessage) {
+        this.$nextTick(() => {
+          this.scrollToMessage(matchingMessage.id);
+        });
       }
     },
     // 画面を下までスクロールするメソッド（メッセージ作成時に実行する）
