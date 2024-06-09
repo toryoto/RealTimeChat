@@ -132,6 +132,28 @@ export default {
         console.log(error)
       }
     },
+    async searchMessages(query) {
+      if (!query) {
+        return;
+      }
+
+      try {
+        const response = await axios.get('http://localhost:3000/api/messages', {
+          params: { q: { content_cont: query } }, // Ransackに送るクエリのパラメータ
+          headers: {
+            uid: this.uid,
+            "access-token": window.localStorage.getItem('access-token'),
+            client: window.localStorage.getItem('client')
+          }
+        });
+
+        const searchMessages = response.data;
+        //this.scrollToSearchedMessage(searchMessages);
+        console.log(searchMessages);
+      } catch (error) {
+        console.log('検索に失敗しました:', error);
+      }
+    },
     // 画面を下までスクロールするメソッド（メッセージ作成時に実行する）
     scrollToBottom() {
       const element = this.$refs.messages
